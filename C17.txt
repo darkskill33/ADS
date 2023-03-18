@@ -1,0 +1,55 @@
+#include <stdio.h>
+int main()
+{
+
+    int a, b, n, k = 0;
+    printf("Įveskite intervalą iš kurio išrinksime pirminius skaicius: "); 
+    scanf("%d", &a);
+    scanf("%d", &b);
+    printf("Įveskite skaitmenų sumą, pagal kurią rinksime pirminius skaičius: ");
+    scanf("%d", &n);
+    
+    int P[b - a];
+ 
+    for(int i = a; i <= b; i++) //ieškome pirminių skaičių;
+    {
+        int c=0;
+        if(i == 1) continue;
+        for(int j = 2; j < b; j++)
+        {
+            if(i%j == 0)
+            {
+                c++;
+            }
+        }
+
+        if(c == 1 || c == 0) //jei pirminis - saugome masyve;
+        {
+            P[k] = i;
+            k++;
+        }
+       
+    }
+    
+    for(int i = 0; i < k; i++) //Ciklas tikrinantis, ar n yra lygūs skaitmenų sumai;
+    {
+        int suma=0;
+        a = P[i];
+        
+        while(a > 0)
+        {
+            suma += a%10;
+            a = a/10;
+        }
+        
+        if(suma == n)
+        {
+            printf("%d", P[i]);
+            printf("\n");
+        }
+
+    }
+    
+
+    return 0;
+}
